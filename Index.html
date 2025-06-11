@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Name | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+    <!-- Font Awesome for skill icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   <style>
+    .tech-glow {
+    position: fixed;
+    left: 0; width: 100vw; height: 4px;
+    background: linear-gradient(90deg, #38bdf8 0%, #0ea5e9 100%);
+    box-shadow: 0 0 24px 8px #38bdf8, 0 0 48px 16px #0ea5e9;
+    z-index: 2;
+    opacity: 0.7;
+    animation: glowMove 3s linear infinite alternate;
+}
+.tech-glow.bottom {
+    top: unset;
+    bottom: 0;
+}
+@keyframes glowMove {
+    0% { filter: blur(2px); }
+    100% { filter: blur(6px); }
+}
+    :root {
+        --primary: #0f172a;
+        --accent: #38bdf8;
+        --bg: linear-gradient(135deg, #f0f4f8 0%, #e0e7ef 100%);
+        --text: #22223b;
+        --radius: 22px;
+        --shadow: 0 6px 32px rgba(30,41,59,0.10);
+        --glass: rgba(255,255,255,0.7);
+    }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        background: var(--bg);
+        font-family: 'Roboto', Arial, sans-serif;
+        color: var(--text);
+        min-height: 100vh;
+    }
+    header {
+        background: linear-gradient(90deg, #38bdf8 0%, #0ea5e9 100%);
+        color: #fff;
+        padding: 56px 0 36px 0;
+        text-align: center;
+        border-radius: 0 0 var(--radius) var(--radius);
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: "";
+        position: absolute;
+        left: -80px;
+        top: -80px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 50%;
+        z-index: 0;
+    }
+    header h1 {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 3em;
+        margin: 0 0 12px 0;
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 1;
+    }
+    header p {
+        font-size: 1.3em;
+        color: #e0f2fe;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+    nav {
+        margin-top: 32px;
+        position: relative;
+        z-index: 1;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 22px;
+        font-weight: 600;
+        font-size: 1.1em;
+        transition: color 0.2s;
+        border-bottom: 2px solid transparent;
+        padding-bottom: 2px;
+        letter-spacing: 0.5px;
+    }
+    nav a:hover {
+        color: #22223b;
+        border-bottom: 2px solid #fff;
+    }
+    .container {
+        max-width: 980px;
+        margin: 48px auto 0 auto;
+        padding: 0 24px;
+    }
+    .card {
+        background: var(--glass);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 40px 36px;
+        margin-bottom: 36px;
+        backdrop-filter: blur(6px);
+        border: 1.5px solid #e0e7ef;
+        transition: box-shadow 0.2s, transform 0.2s;
+        position: relative;
+    }
+    .card:hover {
+        box-shadow: 0 12px 40px rgba(56,189,248,0.13);
+        transform: translateY(-4px) scale(1.01);
+    }
+    .card h2 {
+        font-family: 'Montserrat', Arial, sans-serif;
+        margin-top: 0;
+        color: var(--primary);
+        font-size: 2.1em;
+        letter-spacing: 1px;
+    }
+    .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        padding: 32px 0 16px 0;
+    }
+    .profile-img {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--accent);
+        box-shadow: 0 4px 18px rgba(56,189,248,0.13);
+    }
+    .profile-header h1 {
+        margin: 0;
+        font-size: 2.3em;
+        font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .profile-header p {
+        margin: 8px 0 0 0;
+        color: #e0f2fe;
+        font-size: 1.1em;
+    }
+    .dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        background: var(--accent);
+        border-radius: 50%;
+        margin: 0 8px;
+        vertical-align: middle;
+    }
+    .social-links {
+        margin-top: 10px;
+    }
+    .social-links a {
+        color: #fff;
+        margin-right: 16px;
+        font-size: 1.4em;
+        transition: color 0.2s;
+    }
+    .social-links a:hover {
+        color: var(--accent);
+    }
+    .glass {
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(8px);
+        border: 1.5px solid #e0e7ef;
+        box-shadow: 0 6px 32px rgba(30,41,59,0.10);
+    }
+    .accent-bar {
+        display: inline-block;
+        width: 6px;
+        height: 26px;
+        background: var(--accent);
+        border-radius: 4px;
+        margin-right: 12px;
+        vertical-align: middle;
+    }
+    .highlight {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 1.08em;
+    }
+    .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin: 24px 0 0 0;
+        padding: 0;
+        list-style: none;
+        justify-content: flex-start;
+    }
+    .skills-list li {
+        background: #e0f2fe;
+        color: var(--primary);
+        padding: 12px 22px 12px 18px;
+        border-radius: 999px;
+        font-size: 1.08em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(56,189,248,0.07);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+    }
+    .skills-list li i {
+        margin-right: 10px;
+        font-size: 1.3em;
+        color: #0ea5e9;
+    }
+    .skills-list li:hover {
+        background: #bae6fd;
+        color: #0ea5e9;
+        box-shadow: 0 4px 16px rgba(56,189,248,0.13);
+    }
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 28px;
+    }
+    .project-card {
+        background: #f1f5f9cc;
+        border-radius: var(--radius);
+        padding: 28px 20px;
+        box-shadow: 0 2px 12px rgba(30,41,59,0.07);
+        transition: transform 0.15s, box-shadow 0.15s;
+        border: 1.5px solid #e0e7ef;
+        position: relative;
+        overflow: hidden;
+    }
+    .project-card:hover {
+        transform: translateY(-8px) scale(1.025);
+        box-shadow: 0 8px 32px rgba(56,189,248,0.15);
+        border-color: var(--accent);
+    }
+    .project-card h3 {
+        margin-top: 0;
+        color: var(--primary);
+        font-size: 1.25em;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .project-card p {
+        margin-bottom: 0;
+        color: #334155;
+    }
+    .project-tags {
+        margin-bottom: 10px;
+    }
+    .project-tags span {
+        display: inline-block;
+        background: #bae6fd;
+        color: #0ea5e9;
+        font-size: 0.92em;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 2px 10px;
+        margin-right: 8px;
+    }
+    .project-links {
+        margin-top: 14px;
+    }
+    .project-links a {
+        color: var(--accent);
+        margin-right: 14px;
+        font-size: 1.2em;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .project-links a:hover {
+        color: #0f172a;
+    }
+    form {
+        margin-top: 18px;
+    }
+    .form-group {
+        position: relative;
+        margin-bottom: 22px;
+    }
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 14px 12px 14px 12px;
+        border-radius: 8px;
+        border: 1.5px solid #cbd5e1;
+        font-size: 1em;
+        background: #f8fafc;
+        outline: none;
+        transition: border 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border: 1.5px solid var(--accent);
+    }
+    .form-group label {
+        position: absolute;
+        left: 16px;
+        top: 14px;
+        color: #64748b;
+        font-size: 1em;
+        pointer-events: none;
+        transition: 0.2s;
+        background: transparent;
+    }
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:focus + label,
+    .form-group textarea:not(:placeholder-shown) + label {
+        top: -12px;
+        left: 10px;
+        font-size: 0.92em;
+        color: var(--accent);
+        background: #fff;
+        padding: 0 4px;
+    }
+    button[type="submit"] {
+        background: linear-gradient(90deg, #38bdf8 0%, #0ea5e9 100%);
+        color: #fff;
+        border: none;
+        padding: 13px 38px;
+        border-radius: 8px;
+        font-size: 1.08em;
+        font-family: 'Montserrat',Arial,sans-serif;
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(56,189,248,0.10);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    button[type="submit"]:hover {
+        background: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%);
+        box-shadow: 0 4px 16px rgba(56,189,248,0.18);
+
+    }
+    footer {
+        text-align: center;
+        color: #64748b;
+        font-size: 1em;
+        margin: 60px 0 20px 0;
+    }
+    @media (max-width: 900px) {
+        .profile-header { flex-direction: column; gap: 12px; }
+        .container { max-width: 98vw; }
+        .card { padding: 24px 8px; }
+    }
+    @media (max-width: 600px) {
+        header h1 { font-size: 2em; }
+        nav a { margin: 0 8px; font-size: 1em; }
+        .skills-list { gap: 8px; }
+        .card { padding: 18px 2vw; }
+    }
+    .lang-switcher {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+.lang-btn {
+    background: linear-gradient(90deg, #38bdf8 0%, #0ea5e9 100%);
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 999px;
+    font-size: 1em;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(56,189,248,0.10);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+    outline: none;
+}
+.lang-btn:hover, .lang-btn:focus {
+    background: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(56,189,248,0.18);
+    transform: translateY(-2px) scale(1.04);
+}
+.lang-btn.active {
+    background: #fff;
+    color: #0ea5e9;
+    border: 2px solid #38bdf8;
+    box-shadow: 0 4px 16px rgba(56,189,248,0.18);
+}
+/* Tech-inspired animated background */
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+.tech-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle at 20% 30%, #38bdf8 0%, transparent 70%),
+                radial-gradient(circle at 80% 70%, #0ea5e9 0%, transparent 70%);
+    opacity: 0.18;
+    animation: techMove 10s linear infinite alternate;
+}
+@keyframes techMove {
+    0% { background-position: 20% 30%, 80% 70%; }
+    100% { background-position: 30% 40%, 70% 60%; }
+}
+.tech-glow {
+    position: fixed;
+    left: 0; width: 100vw; height: 4px;
+    background: linear-gradient(90deg, #38bdf8 0%, #0ea5e9 100%);
+    box-shadow: 0 0 24px 8px #38bdf8, 0 0 48px 16px #0ea5e9;
+    z-index: 2;
+    opacity: 0.7;
+    animation: glowMove 3s linear infinite alternate;
+}
+.tech-glow.bottom {
+    top: unset;
+    bottom: 0;
+}
+@keyframes glowMove {
+    0% { filter: blur(2px); }
+    100% { filter: blur(6px); }
+}
+header h1, .card h2 {
+    text-shadow: 0 0 8px #38bdf8, 0 0 16px #0ea5e9;
+}
+.circuit-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+#particles-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+</style>
+</head>
+<body>
+    <body>
+    <div class="tech-bg"></div>
+    <div class="tech-glow"></div>
+    <div class="tech-glow bottom"></div>
+    <!-- ...existing code... -->
+     <div class="tech-bg"></div>
+<div class="circuit-bg">
+  <svg width="100%" height="100%" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <g stroke="#38bdf8" stroke-width="2" opacity="0.18">
+      <path d="M100 200 H400 V400 H700" />
+      <path d="M300 100 V300 H600" />
+      <circle cx="400" cy="400" r="12" fill="#0ea5e9" />
+      <circle cx="700" cy="400" r="8" fill="#38bdf8" />
+      <path d="M1200 800 H1500 V600 H1700" />
+      <circle cx="1500" cy="600" r="10" fill="#38bdf8" />
+      <path d="M900 200 V500 H1200" />
+      <circle cx="900" cy="500" r="7" fill="#0ea5e9" />
+      <!-- Add more lines/circuits as you wish -->
+    </g>
+  </svg>
+</div>
+<canvas id="particles-bg"></canvas>
+    <header>
+        <div class="profile-header">
+            <img src="miran.jpg" alt="Zhiyar Ali" class="profile-img" loading="lazy">
+            <div>
+                <h1 id="name-en">Miran Mohammed</h1>
+                <h1 id="name-ku" style="display:none;">میران محمد</h1>
+                <p id="desc-en">Web Developer <span class="dot"></span> Designer <span class="dot"></span> Network Engineer</p>
+                <p id="desc-ku" style="display:none;">پەرەسەندەری وێب <span class="dot"></span> دیزاینەر <span class="dot"></span> ئینجنێری تۆڕ</p>
+                <div class="social-links">
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <!-- Language Switcher -->
+               <!-- ...existing code... -->
+<div class="lang-switcher">
+    <button id="btn-en" onclick="showLang('en')" class="lang-btn active">English</button>
+    <button id="btn-ku" onclick="showLang('ku')" class="lang-btn">کوردی</button>
+</div>
+<!-- ...existing code... -->
+            </div>
+        </div>
+        <nav>
+            <a href="#about" id="nav-about-en">About</a>
+            <a href="#about" id="nav-about-ku" style="display:none;">دەربارە</a>
+            <a href="#skills" id="nav-skills-en">Skills</a>
+            <a href="#skills" id="nav-skills-ku" style="display:none;">تواناکان</a>
+            <a href="#projects" id="nav-projects-en">Projects</a>
+            <a href="#projects" id="nav-projects-ku" style="display:none;">پڕۆژەکان</a>
+            <a href="#contact" id="nav-contact-en">Contact</a>
+            <a href="#contact" id="nav-contact-ku" style="display:none;">پەیوەندی</a>
+        </nav>
+    </header>
+    <main class="container">
+        <!-- About Section -->
+        <section class="card glass" id="about">
+            <h2>
+                <span class="accent-bar"></span>
+                <span id="about-title-en">About Me</span>
+                <span id="about-title-ku" style="display:none;">دەربارەی من</span>
+            </h2>
+            <p id="about-en">
+                Hi, I'm <strong>Miran Mohammed</strong> — a passionate web developer, designer, and network engineer. I specialize in building elegant, high-performance digital experiences that blend creativity with technology.<br><br>
+                My expertise spans both front-end and back-end development, and I thrive on solving real-world problems with innovative solutions. I love collaborating, learning, and pushing the boundaries of what's possible.<br><br>
+                <span class="highlight">Let’s build something extraordinary together!</span>
+            </p>
+            <p id="about-ku" style="display:none;">
+                سڵاو، من <strong>میران محمد</strong>م ـ پەرەسەندەری وێب، دیزاینەر و ئینجنێری تۆڕم. تایبەتمەندیەکانم لە دروستکردنی ئەزموونە دیجیتاڵیە نوێن و بەرزکاریەکانە کە خەیاڵ و تەکنەلۆژیا پێکەوە دەگرێت.<br><br>
+                شارەزاییەکەم لە پێشەکی و دواپەڕی گەشەپێدانی وێبە، و خۆشحاڵ دەبم کە کێشەی ڕاستەقینە چارەسەر بکەم بە چاره‌نووسی نوێ. حەز دەکەم لە هاوبەشکاری، فێرکاری و تاقیکردنەوەی سنووری تواناکان.<br><br>
+                <span class="highlight">بەیەکەوە شتێکی جیاواز دروست بکەین!</span>
+            </p>
+            </section>
+        <!-- Skills Section -->
+        <section class="card glass" id="skills">
+            <h2>
+                <span class="accent-bar"></span>
+                <span id="skills-title-en">Skills</span>
+                <span id="skills-title-ku" style="display:none;">تواناکان</span>
+            </h2>
+            <ul class="skills-list" id="skills-list-en">
+                <li><i class="fab fa-html5"></i>HTML5</li>
+                <li><i class="fab fa-css3-alt"></i>CSS3</li>
+                <li><i class="fab fa-js-square"></i>JavaScript</li>
+                <li><i class="fab fa-react"></i>React</li>
+                <li><i class="fab fa-node-js"></i>Node.js</li>
+                <li><i class="fab fa-python"></i>Python</li>
+                <li><i class="fab fa-github"></i>Git &amp; GitHub</li>
+                <li><i class="fas fa-network-wired"></i>Cisco Networking</li>
+                <li><i class="fas fa-code"></i>C#</li>
+                <li><i class="fas fa-code"></i>C++</li>
+                <li><i class="fab fa-figma"></i>Figma</li>
+            </ul>
+            <ul class="skills-list" id="skills-list-ku" style="display:none;">
+                <li><i class="fab fa-html5"></i>ئێچ تی ئێم ئێڵ ٥</li>
+                <li><i class="fab fa-css3-alt"></i>سی ئێس ئێس ٣</li>
+                <li><i class="fab fa-js-square"></i>جاڤاسکریپت</li>
+                <li><i class="fab fa-react"></i>ریئاکت</li>
+                <li><i class="fab fa-node-js"></i>نۆد.جێس</li>
+                <li><i class="fab fa-python"></i>پایتۆن</li>
+                <li><i class="fab fa-github"></i>گیت و گیت هەب</li>
+                <li><i class="fas fa-network-wired"></i>تۆڕسازی</li>
+                <li><i class="fas fa-code"></i>سی شارپ</li>
+                <li><i class="fas fa-code"></i>سی پلاس پلاس</li>
+                <li><i class="fab fa-figma"></i>فیگما</li>
+            </ul>
+        </section>
+        <!-- Projects Section -->
+        <section class="card glass" id="projects">
+            <h2>
+                <span class="accent-bar"></span>
+                <span id="projects-title-en">Projects</span>
+                <span id="projects-title-ku" style="display:none;">پڕۆژەکان</span>
+            </h2>
+            <div class="projects-grid" id="projects-grid-en">
+                <div class="project-card">
+                    <div class="project-tags">
+                        <span>App</span><span>Teamwork</span>
+                    </div>
+                    <h3><i class="fas fa-ticket-alt"></i> Extra Time Application</h3>
+                    <p>A ticket reservation app made with university mates. Extra Time saves your time anywhere, anytime.</p>
+                    <div class="project-links">
+                        <a href="#" title="View on GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-tags">
+                        <span>Blog</span><span>Fullstack</span>
+                    </div>
+                    <h3><i class="fas fa-blog"></i> Personal Blog Platform</h3>
+                    <p>A responsive blog for writing, editing, and sharing articles. Features markdown, comments, and categories.</p>
+                    <div class="project-links">
+                        <a href="#" title="View on GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-tags">
+                        <span>Quiz</span><span>Frontend</span>
+                    </div>
+                    <h3><i class="fas fa-question-circle"></i> Online Quiz Platform</h3>
+                    <p>Create and take quizzes, track scores, and challenge friends.</p>
+                    <div class="project-links">
+                      <a href="#" title="View on GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-tags">
+                        <span>Portfolio</span>
+                    </div>
+                    <h3><i class="fas fa-user-circle"></i> Portfolio Website</h3>
+                    <p>A personal portfolio to showcase your projects, skills, and experience. Includes a contact form and social links.</p>
+                    <div class="project-links">
+                        <a href="#" title="View on GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="projects-grid" id="projects-grid-ku" style="display:none;">
+                <div class="project-card">
+                    <div class="project-tags">
+                        <span>ئەپ</span><span>تیم</span>
+                    </div>
+                    <h3><i class="fas fa-ticket-alt"></i> بەرنامەی ئێکستراتایم</h3>
+                    <p>بەرنامەیەک بۆ رزگرتنی بلیت کە لەگەڵ هاوکارانی زانکۆ دروستکراوە. ئێکستراتایم کاتت پارێز دەکات هەر کوێ و هەر کات.</p>
+                    <div class="project-links">
+                        <a href="#" title="بینینی لە گیت هەب"><i class="fab fa-github"></i></a>
+                        <a href="#" title="بینینی ڕاستەوخۆ"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-tags">
+                        <span>بلۆگ</span><span>فولستاک</span>
+                    </div>
+                    <h3><i class="fas fa-blog"></i> پلاتفۆرمی بلۆگ</h3>
+                    <p>بلۆگێکی وەڵامگەڕ بۆ نووسین، دەستکاری و هاوبەشکردنی بابەتەکان. تایبەتمەندیەکان: مارکداون، لێدوان و هاوپۆلەکان.</p>
+                    <div class="project-links">
+                        <a href="#" title="بینینی لە گیت هەب"><i class="fab fa-github"></i></a>
+                        <a href="#" title="بینینی ڕاستەوخۆ"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-tags">
+                        <span>کویز</span><span>پێشەکی</span>
+                    </div>
+                    <h3><i class="fas fa-question-circle"></i> پلاتفۆرمی کویز</h3>
+                    <p>دروستکردن و تاقیکردنەوەی کویز، تۆمارکردنی خاڵ و هەڵوەشاندنەوەی هاوڕێیان.</p>
+                    <div class="project-links">
+                        <a href="#" title="بینینی لە گیت هەب"><i class="fab fa-github"></i></a>
+                        <a href="#" title="بینینی ڕاستەوخۆ"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-tags">
+                        <span>پۆرتفۆلیۆ</span>
+                    </div>
+                    <h3><i class="fas fa-user-circle"></i> ماڵپەڕی پۆرتفۆلیۆ</h3>
+                    <p>ماڵپەڕێکی تایبەتی بۆ پیشاندانی پڕۆژەکان، تواناکان و ئەزموونەکانت. تێدایە فۆرمی پەیوەندی و بەستەرە کۆمەڵایەتییەکان.</p>
+                    <div class="project-links">
+                        <a href="#" title="بینینی لە گیت هەب"><i class="fab fa-github"></i></a>
+                        <a href="#" title="بینینی ڕاستەوخۆ"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="card glass" id="contact">
+            <h2>
+                <span class="accent-bar"></span>
+                <span id="contact-title-en">Contact</span>
+                <span id="contact-title-ku" style="display:none;">پەیوەندی</span>
+            </h2>
+            <p id="contact-en">Feel free to reach out for collaborations or just a friendly hello!</p>
+            <p id="contact-ku" style="display:none;">بە ئاسانی پەیوەندی بکە بۆ هاوبەشکاری یان تەنها بۆ سڵاوێکی هاوڕێیانە!</p>
+            <form>
+                <div class="form-group">
+                    <input type="text" name="name" required placeholder=" " id="input-name">
+                    <label id="label-name-en">Your Name</label>
+                    <label id="label-name-ku" style="display:none;">ناوت</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" required placeholder=" " id="input-email">
+                    <label id="label-email-en">Your Email</label>
+                    <label id="label-email-ku" style="display:none;">ئیمەیڵەکەت</label>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" required placeholder=" " id="input-message"></textarea>
+                    <label id="label-message-en">Your Message</label>
+                    <label id="label-message-ku" style="display:none;">پەیامەکەت</label>
+                </div>
+                <button type="submit" id="submit-en"><i class="fas fa-paper-plane"></i> Send</button>
+                <button type="submit" id="submit-ku" style="display:none;"><i class="fas fa-paper-plane"></i> ناردن</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <span id="footer-en">&copy; 2025 MIRAN. All rights reserved.</span>
+        <span id="footer-ku" style="display:none;">&copy; ٢٠٢٥ میران. هەموو مافەکان پارێزراوە.</span>
+    </footer>
+    <script>
+        
+function showLang(lang) {
+    // Header
+    document.getElementById('name-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('name-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('desc-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('desc-ku').style.display = lang === 'ku' ? '' : 'none';
+    // Nav
+    document.getElementById('nav-about-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('nav-about-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('nav-skills-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('nav-skills-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('nav-projects-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('nav-projects-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('nav-contact-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('nav-contact-ku').style.display = lang === 'ku' ? '' : 'none';
+    // About
+    document.getElementById('about-title-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('about-title-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('about-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('about-ku').style.display = lang === 'ku' ? '' : 'none';
+    // Skills
+    document.getElementById('skills-title-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('skills-title-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('skills-list-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('skills-list-ku').style.display = lang === 'ku' ? '' : 'none';
+    // Projects
+    document.getElementById('projects-title-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('projects-title-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('projects-grid-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('projects-grid-ku').style.display = lang === 'ku' ? '' : 'none';
+    // Contact
+    document.getElementById('contact-title-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('contact-title-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('contact-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('contact-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('label-name-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('label-name-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('label-email-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('label-email-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('label-message-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('label-message-ku').style.display = lang === 'ku' ? '' : 'none';
+    document.getElementById('submit-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('submit-ku').style.display = lang === 'ku' ? '' : 'none';
+    // Footer
+    document.getElementById('footer-en').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('footer-ku').style.display = lang === 'ku' ? '' : 'none';
+    // Language button active state
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ku').classList.toggle('active', lang === 'ku');
+}
+
+
+// ...existing code...
+    </script>
+    <script>
+// Simple animated particles background
+const canvas = document.getElementById('particles-bg');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const colors = ['#38bdf8', '#0ea5e9', '#fff'];
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    for (let i = 0; i < 40; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2 + 1,
+            dx: (Math.random() - 0.5) * 0.7,
+            dy: (Math.random() - 0.5) * 0.7,
+            color: colors[Math.floor(Math.random() * colors.length)]
+        });
+    }
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let p of particles) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+            ctx.fillStyle = p.color;
+            ctx.shadowColor = p.color;
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            p.x += p.dx;
+            p.y += p.dy;
+            // FIX: Use || instead of single space for logical OR
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        }
+        requestAnimationFrame(draw);
+    }
+    draw();
+}
+</script>
+</body>
+</html>
