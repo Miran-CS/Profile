@@ -318,7 +318,8 @@
     .form-group input:focus + label,
     .form-group input:not(:placeholder-shown) + label,
     .form-group textarea:focus + label,
-    .form-group textarea:not(:placeholder-shown) + label {
+    .form-group textarea:not(:placeholder-shown) + label,
+    .form-group label.active {
         top: -12px;
         left: 10px;
         font-size: 0.92em;
@@ -722,6 +723,43 @@ function showLang(lang) {
     // Language button active state
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-ku').classList.toggle('active', lang === 'ku');
+    
+    // Fix floating labels for RTL (Kurdish) inputs
+    if (lang === 'ku') {
+        setupFloatingLabels();
+    }
+}
+
+// Floating label fix for RTL inputs (Kurdish)
+function setupFloatingLabels() {
+    const inputs = document.querySelectorAll('#input-name, #input-email, #input-message');
+    
+    inputs.forEach(input => {
+        // Function to check if input has value
+        const checkValue = () => {
+            const label = input.nextElementSibling.nextElementSibling; // Get Kurdish label
+            if (input.value.trim() !== '') {
+                label.classList.add('active');
+            } else {
+                label.classList.remove('active');
+            }
+        };
+        
+        // Check on input
+        input.addEventListener('input', checkValue);
+        
+        // Check on focus
+        input.addEventListener('focus', () => {
+            const label = input.nextElementSibling.nextElementSibling;
+            label.classList.add('active');
+        });
+        
+        // Check on blur
+        input.addEventListener('blur', checkValue);
+        
+        // Initial check
+        checkValue();
+    });
 }
 
 
